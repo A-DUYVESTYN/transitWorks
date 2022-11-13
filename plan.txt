@@ -1,0 +1,14 @@
+
+
+
+use twitter API to get ttc service disruptions.
+
+need backend.
+
+frontend react
+
+display them in a list on a simple page.
+refresh
+
+try to get service disruptions using from TTC website a webscraper 
+https://www.ttc.ca/service-alerts 
