@@ -11,7 +11,7 @@ function Transit(props) {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8080/count")
+    axios.get("http://localhost:8080/ttcTwit")
     .then(res => {
       console.log(res)
       setTweets({
@@ -19,7 +19,7 @@ function Transit(props) {
       });
     })
     .catch((err) => {
-      console.log("twitter get error:", err);
+      console.log("twitter GET error:", err);
     });
   }, []);
   

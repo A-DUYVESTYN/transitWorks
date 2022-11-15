@@ -4,7 +4,10 @@ import Transit from "./components/Transit";
 function App() {
   return (
     <>
-      <Transit />
+    <h1>
+      TTC Service Disruptions
+    </h1>
+    <Transit />
     </>
   );
 }

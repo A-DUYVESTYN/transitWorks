@@ -5,8 +5,9 @@ const morgan = require('morgan');
 const cors = require('cors')
 const bodyParser = require('body-parser');
 
+const indexRouter = require('./routes/index');
 const defaultRoutes = require('./routes/default')
-
+const ttcTwitterRouter = require('./routes/ttcTwit')
 
 const app = express();
 
@@ -14,11 +15,13 @@ const app = express();
 app.use(morgan(ENVIROMENT));
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/count', defaultRoutes)
-app.use('/count', defaultRoutes)
 
-app.get('/', (req, res) => {
-	res.json({greetings: 'hello world'});
-})
+app.use('/', indexRouter);
+app.use('/count', defaultRoutes)
+app.use('/transit', ttcTwitterRouter)
+
+// app.get('/', (req, res) => {
+// 	res.json({greetings: 'Homepage'});
+// })
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
