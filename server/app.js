@@ -20,8 +20,4 @@ app.use('/', indexRouter);
 app.use('/count', defaultRoutes)
 app.use('/transit', ttcTwitterRouter)
 
-// app.get('/', (req, res) => {
-// 	res.json({greetings: 'Homepage'});
-// })
-
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));

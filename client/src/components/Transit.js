@@ -10,12 +10,33 @@ function Transit(props) {
     tweetList: [],
   });
 
+  const formatTweets = (tweetArr) => {
+    // remove the link url from end of tweet text
+    
+    const formattedArr = [];
+    // const maxLength = 125;
+    tweetArr.forEach((element) => {
+      let tweetText = element.text.slice(0, element.text.indexOf(" http"));
+      // if (tweetText.length > maxLength) tweetText = tweetText.substring(0, maxLength) + "..." // cap tweet length to 125 char
+
+      formattedArr.push({
+        created_at: element.created_at,
+        id: element.id,
+        text: tweetText,
+      });
+    });
+
+    return formattedArr;
+  };
+
+
   useEffect(() => {
-    axios.get("http://localhost:8080/ttcTwit")
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/transit`)
     .then(res => {
-      console.log(res)
+      let formatData = formatTweets(res.data.data)
+      console.log(formatData)
       setTweets({
-        tweetList: (res.data),
+        tweetList: formatData
       });
     })
     .catch((err) => {
@@ -26,7 +47,13 @@ function Transit(props) {
   return (
     <>
     <div>
-      {tweets.tweetList}
+      {tweets.tweetList.map((item, index) => {
+        return (
+          <div key={index} id={"tweet" + index}>
+            <p>{item.text}</p>
+          </div>
+        );
+      })}
     </div>
     </>
 
