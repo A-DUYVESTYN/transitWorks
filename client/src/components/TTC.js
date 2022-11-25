@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
 
-function Transit(props) {
+function TTC(props) {
 
   const [tweets, setTweets] = useState({
     twitterUser: "@ttcnotices",
@@ -45,20 +45,27 @@ function Transit(props) {
   }, []);
   
   return (
-    <>
-    <div>
-      {tweets.tweetList.map((item, index) => {
-        return (
-          <div key={index} id={"tweet" + index}>
-            <p>{item.text}</p>
+    <div className="flex-col">
+      <h1>TTC</h1>
+      <section>
+        {tweets.tweetList.map((item, index) => {
+          return (
+          <div className="w-full p-4 shadow-md lg:max-w-lg">
+            <article className="space-y-2">
+              <h3 className="text-2xl font-semibold">
+                  Title
+              </h3>
+              <div key={index} id={"tweet" + index}>
+                <p>{item.text}</p>
+              </div>
+            </article>
           </div>
-        );
-      })}
+          );
+        })}
+      </section>
     </div>
-    </>
-
   )
   
 }
 
-export default Transit;
+export default TTC;

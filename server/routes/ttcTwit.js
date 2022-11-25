@@ -7,7 +7,7 @@ const getTweets = () => {
   const token = process.env.TWITTER_BEARER_TOKEN 
   const config = {
     method: 'get',
-    url: `https://api.twitter.com/2/users/${twitterUserId}/tweets?tweet.fields=created_at`, 
+    url: `https://api.twitter.com/2/users/${twitterUserId}/tweets?max_results=20&tweet.fields=created_at`, 
     headers: { 
       Authorization: `Bearer ${token}`, 
       Cookie: 'guest_id=v1%3A166308728881496672'
@@ -15,7 +15,7 @@ const getTweets = () => {
   }
   return axios(config)
   .then( (res) => {
-    console.log("####### Twitter respose data: ",JSON.stringify(res.data));
+    // console.log("####### Twitter respose data: ",JSON.stringify(res.data));
     return res.data
   })
   .then()

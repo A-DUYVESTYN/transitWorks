@@ -8,7 +8,10 @@ need backend.
 frontend react
 
 display them in a list on a simple page.
-refresh
 
-try to get service disruptions using from TTC website a webscraper 
+classify the notice by rail line / route
+
+
+
+try to get service disruptions alternatively from TTC website using a webscraper 
 https://www.ttc.ca/service-alerts 
