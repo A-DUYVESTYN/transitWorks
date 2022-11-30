@@ -18,7 +18,6 @@ const getTweets = () => {
     // console.log("####### Twitter respose data: ",JSON.stringify(res.data));
     return res.data
   })
-  .then()
   .catch( (err) =>  {
     console.log(err);
   });
