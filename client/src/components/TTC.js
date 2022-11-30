@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
+import TTCItem from "./TTCItem";
 // const classNames = require('classnames');
 
 function TTC(props) {
@@ -15,22 +16,23 @@ function TTC(props) {
 
   const formatTweets = (tweetArr) => {
     const getRouteColor = function (num) {
-      if (num === 1) return '[#f8c300]'
-      if (num === 2) return '[#00923f]'
-      if (num === 3) return '[#0082c9]'
-      if (num === 4) return '[#a21a68]'
-      if (num < 300) return '[#da251d]'
-      if (num < 400) return '[#024182]'
-      if (num < 500) return '[#808080]'
-      if (num < 900) return '[#da251d]'
-      if (num > 900) return '[#00923f]'
+      //NOTE: the className must appear in its entirety e.g. 'bg-[#f8c300]' for tailwind to extract & compile it
+      if (num === 1) return 'bg-[#f8c300]'
+      if (num === 2) return 'bg-[#00923f]'
+      if (num === 3) return 'bg-[#0082c9]'
+      if (num === 4) return 'bg-[#a21a68]'
+      if (num < 300) return 'bg-[#da251d]'
+      if (num < 400) return 'bg-[#024182]'
+      if (num < 500) return 'bg-[#808080]'
+      if (num < 900) return 'bg-[#da251d]'
+      if (num > 900) return 'bg-[#00923f]'
     }
     const formattedArr = [];
     tweetArr.forEach((element) => {
       const tweetText = element.text.slice(0, element.text.indexOf(" http")); // remove the link url from end of tweet text
-      const routeNumber = 504
+      const routeNumber = 2
       const routeType = "Line 2"
-      const routeColor = `bg-${getRouteColor(routeNumber)}`
+      const routeColor = getRouteColor(routeNumber)
       console.log(routeColor)
 
       formattedArr.push({
@@ -65,15 +67,8 @@ function TTC(props) {
       <section>
         {tweets.tweetList.map((tweet, index) => {
           return (
-          <div className="w-full m-2 rounded-lg shadow-md border-black border-2 lg:max-w-lg">
-            <article className="flex flex-row items-start m-1">
-              <div className={`text-2xl font-semibold self-center px-4 py-2 ${tweet.routeColor}`}>
-                {tweet.routeNumber}
-              </div>
-              <div key={index} id={"tweet" + index}>
-                <p>{tweet.text}</p>
-              </div>
-            </article>
+          <div key={index} id={"ttcNotice" + index}>
+            <TTCItem tweet={tweet}/> 
           </div>
           );
         })}
