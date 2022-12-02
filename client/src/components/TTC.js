@@ -5,46 +5,43 @@ import TTCItem from "./TTCItem";
 // const classNames = require('classnames');
 
 function TTC(props) {
-
   const [tweets, setTweets] = useState({
     twitterUser: "@ttcnotices",
     twitterId: "19025957",
     tweetList: [],
   });
-  // const routes = [1,2,3,4,301,304,306,310,501,503,504,505,506,509,510,511,512]
+
+  // const railRoutes = [1,2,3,4,301,304,306,310,501,503,504,505,506,509,510,511,512]
   // bus routes not included in routes array: 7 to 189, 300 to 396 (blue night), 400-405 (community bus), 900 - 996 (express)
 
-
   const formatTweets = (tweetArr) => {
-    const getRouteColor = function (num) {
-      //NOTE: the className must appear in its entirety e.g. 'bg-[#f8c300]' for tailwind to extract & compile it
-      // TTC red info and tones: https://www.color-hex.com/color/da251d
-      if (num === 1) return 'bg-[#f8c300]'
-      if (num === 2) return 'bg-[#00923f]'
-      if (num === 3) return 'bg-[#0082c9]'
-      if (num === 4) return 'bg-[#a21a68]'
-      if (num < 300) return 'bg-[#e56660]'
-      if (num < 400) return 'bg-[#024182]'
-      if (num < 500) return 'bg-[#808080]'
-      if (num < 900) return 'bg-[#da251d]'
-      if (num > 900) return 'bg-[#00923f]'
-      return 'bg-[#d7dbd3]'
-    }
     const getRouteNumber = function (input) {
       const match = input.match(/\b([0-9]|[1-9][0-9]|[1-9][0-9][0-9])\b/);
-      if(match) {
+      if (match) {
         return Number(match[0]);
       }
       return "-";
     }
+    const getRouteColor = function (num) {
+      //NOTE: the className must appear entirety (e.g. 'bg-[#f8c300]') for tailwind to extract & compile it
+      //TTC red colour info and tones: https://www.color-hex.com/color/da251d
+      if (num === 1) return ['bg-[#f8c300]', "subway"]
+      if (num === 2) return ['bg-[#00923f]', "subway"]
+      if (num === 3) return ['bg-[#0082c9]', "subway"]
+      if (num === 4) return ['bg-[#a21a68]', "subway"]
+      if (num < 300) return ['bg-[#e56660]', "bus"]
+      if (num < 400) return ['bg-[#024182]', "blue-night"]
+      if (num < 500) return ['bg-[#808080]', "community-bus"]
+      if (num < 900) return ['bg-[#da251d]', "streetcar"]
+      if (num > 900) return ['bg-[#00923f]', "express"]
+      return ['bg-[#d7dbd3]', 'non-route']
+    }
     const formattedArr = [];
     tweetArr.forEach((element) => {
-      const tweetText = element.text.slice(0, element.text.indexOf(" http")); // remove the link url from end of tweet text
+      const tweetText = element.text.slice(0, element.text.indexOf(" http")); //remove link url from tweet text
       // console.log(tweetText, "######", getRouteNumber(tweetText))
       const routeNumber = getRouteNumber(tweetText)
-      const routeType = "Line 2"
-      const routeColor = getRouteColor(routeNumber)
-
+      const [routeColor, routeType] = getRouteColor(routeNumber)
       formattedArr.push({
         created_at: element.created_at,
         id: element.id,
@@ -59,32 +56,60 @@ function TTC(props) {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/transit`)
-    .then(res => {
-      const formatData = formatTweets(res.data.data)
-      setTweets({
-        tweetList: formatData
+      .then(res => {
+        const formatData = formatTweets(res.data.data)
+        console.log(formatData)
+        setTweets({
+          tweetList: formatData
+        });
+      })
+      .catch((err) => {
+        console.log("twitter GET error:", err);
       });
-    })
-    .catch((err) => {
-      console.log("twitter GET error:", err);
-    });
   }, []);
-  
+
   return (
     <div className="flex-col">
-      <h1>TTC</h1>
+      <h1 className="text-accent text-center">
+        TTC
+        <span> @</span><a
+          className="underline text-right text-xs"
+          href="https://twitter.com/ttcnotices"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TTCnotices
+        </a>
+      </h1>
+
       <section>
         {tweets.tweetList.map((tweet, index) => {
           return (
-          <div key={index} id={"ttcNotice" + index}>
-            <TTCItem tweet={tweet}/> 
-          </div>
+            <div key={index} id={"ttcNotice" + index}>
+              <TTCItem tweet={tweet} />
+            </div>
           );
         })}
       </section>
+
+      {props.devView &&
+        <section>
+          <div>
+            <h2>
+              Subway
+            </h2>
+            {tweets.tweetList.filter((tweet) => tweet.routeType === "subway").map((tweet, index) => {
+              return (
+                <div key={index} id={"subwayNotice" + index}>
+                  <TTCItem tweet={tweet} />
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      }
     </div>
   )
-  
 }
 
 export default TTC;
