@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const defaultRoutes = require('./routes/default')
 const ttcTwitterRouter = require('./routes/ttcTwit')
+const goTrainRouter = require('./routes/goTrain')
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/count', defaultRoutes)
 app.use('/transit', ttcTwitterRouter)
+app.use('/gotrain', goTrainRouter)
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
