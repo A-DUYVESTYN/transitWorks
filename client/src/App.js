@@ -2,6 +2,8 @@
 import './App.css';
 import { useState } from "react";
 import TTC from "./components/TTC";
+import GoTransit from "./components/GoTransit";
+
 
 function App() {
 
@@ -18,9 +20,9 @@ function App() {
         <h1 className="p-2 text-xl">
           Transit Service Disruptions
         </h1>
-        <div className="flex flex-row justify-evenly">
+        <div className="flex flex-col md:flex-row justify-evenly">
           <TTC devView={devView} className="w-60"/>
-          <div className="w-60">GO Transit</div>
+          <GoTransit devView={devView} className="w-60"/>
         </div>
       </div>
 
@@ -34,10 +36,10 @@ function App() {
             </label>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">About</a>
+            <span className="mr-4 hover:underline md:mr-6 ">About</span>
           </li>
           <li>
-            <a href="#" className="hover:underline">Contact</a>
+            <span className="hover:underline">Contact</span>
           </li>
         </ul>
       </footer>

@@ -5,7 +5,7 @@ const TTCItem = (props) => {
   const {tweet} = props;
 
   return (
-    <div className="w-full m-2 rounded-lg shadow-md border-black border-2 lg:max-w-lg">
+    <div className="md:max-w-lg ">
       <article className="flex flex-row">
         <div>
           <div className={`flex flex-col justify-center items-center h-full w-14 ${tweet.routeColor}`}>

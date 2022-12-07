@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
 import TTCItem from "./TTCItem";
-// const classNames = require('classnames');
 
 function TTC(props) {
   const [tweets, setTweets] = useState({
@@ -37,14 +36,14 @@ function TTC(props) {
       return ['bg-[#d7dbd3]', 'non-route']
     }
     const formattedArr = [];
-    tweetArr.forEach((element) => {
-      const tweetText = element.text.slice(0, element.text.indexOf(" http")); //remove link url from tweet text
+    tweetArr.forEach((tweet) => {
+      const tweetText = tweet.text.slice(0, tweet.text.indexOf(" http")); //remove link url from tweet text
       // console.log(tweetText, "######", getRouteNumber(tweetText))
       const routeNumber = getRouteNumber(tweetText)
       const [routeColor, routeType] = getRouteColor(routeNumber)
       formattedArr.push({
-        created_at: element.created_at,
-        id: element.id,
+        created_at: tweet.created_at,
+        id: tweet.id,
         text: tweetText,
         routeNumber,
         routeType,
@@ -55,12 +54,12 @@ function TTC(props) {
   };
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/transit`)
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/ttcAlerts`)
       .then(res => {
-        const formatData = formatTweets(res.data.data)
-        console.log(formatData)
+        const formattedData = formatTweets(res.data.data)
+        console.log(formattedData)
         setTweets({
-          tweetList: formatData
+          tweetList: formattedData
         });
       })
       .catch((err) => {
@@ -81,8 +80,7 @@ function TTC(props) {
           TTCnotices
         </a>
       </h1>
-
-      <section>
+      <section className="divide-y bg-slate-400">
         {tweets.tweetList.map((tweet, index) => {
           return (
             <div key={index} id={"ttcNotice" + index}>

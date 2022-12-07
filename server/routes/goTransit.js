@@ -2,7 +2,7 @@ const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 
-const getGoTrainAlerts = () => {
+const getGoTransitAlerts = () => {
   // const dateTo = new Date().toLocaleDateString('en-CA').replaceAll("-","")
   // let dateFrom = new Date();
   // dateFrom.setDate(dateFrom.getDate()-5)
@@ -17,7 +17,7 @@ const getGoTrainAlerts = () => {
   return axios(options)
   .then( (res) => {
     console.log("####### GO Transit API respose data: ",res.data);
-    return res.data
+    return res.data.Messages.Message
   })
   .catch( (err) =>  {
     console.log(err);
@@ -25,7 +25,7 @@ const getGoTrainAlerts = () => {
 }
 
 router.get('/', (req, res) => {
-  getGoTrainAlerts()
+  getGoTransitAlerts()
   .then((data) => {
     res.json(data)
   })
