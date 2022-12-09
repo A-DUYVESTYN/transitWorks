@@ -7,9 +7,9 @@ const GoTransitServiceItem = (props) => {
   return (
     <div className="md:max-w-lg ">
       <article className="flex flex-row">
-          <div className={`flex flex-col justify-center items-center h-full w-14`}>
-            <p className="text-2xl font-semibold">{alert.Lines.map(element => element.Code)}</p>
-          </div>
+        <div className="justify-center items-center h-full w-32 bg-[#68952d]">
+          <p className="text-2xl font-semibold">{alert.Lines.map(element => element.Code)}</p>
+        </div>
         <div>
           <div className="flex flex-col">
             <p className="font-semibold">{alert.SubCategory}</p>

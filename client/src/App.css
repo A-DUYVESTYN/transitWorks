@@ -2,6 +2,9 @@
   text-align: center;
 }
 
+h1 {
+  font-family: 'Roboto', sans-serif;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

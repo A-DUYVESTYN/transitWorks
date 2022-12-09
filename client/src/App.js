@@ -13,9 +13,11 @@ function App() {
     setDevView(!devView)
   }
 
-  const [theme, setTheme] = useState(null)
+  const [theme, setTheme] = useState("light")
   const handleThemeSwitch = () => {
     setTheme(theme === "dark" ? "light" : "dark")
+    console.log(window.matchMedia('(prefers-color-scheme: dark)'))
+    console.log(document.documentElement.classList)
   }
   useEffect(() => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
@@ -27,10 +29,9 @@ function App() {
   }, [theme])
   
   return (
-    <div className="flex flex-col mb-10 dark:bg-slate-800">
-
+    <div className="flex flex-col mb-10 bg-slate-300 dark:bg-slate-800">
       <div className="grow">
-        <h1 className="p-2 text-xl dark:text-white">
+        <h1 className="p-2 mx-4 font-medium text-gray-700 dark:text-gray-200">
           Transit Service Disruptions
         </h1>
         <div className="flex flex-col md:flex-row justify-evenly">

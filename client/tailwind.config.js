@@ -16,6 +16,9 @@ module.exports = {
         'expressBus': '#00923f'
       },
     },
+    fontFamily: {
+      'roboto': ['Roboto', 'sans-serif'],
+    }
   },
   plugins: [],
 }
