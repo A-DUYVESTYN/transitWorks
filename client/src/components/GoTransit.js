@@ -33,7 +33,7 @@ function GoTransit(props) {
 
   return (
     <div className="flex-col">
-      <h1 className="text-accent text-center">
+      <h1 className="text-accent text-center dark:text-white">
         GO TRANSIT
       </h1>
       <section className="divide-y bg-slate-400">

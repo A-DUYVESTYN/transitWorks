@@ -69,7 +69,7 @@ function TTC(props) {
 
   return (
     <div className="flex-col">
-      <h1 className="text-accent text-center">
+      <h1 className="text-accent text-center dark:text-white">
         TTC
         <span> @</span><a
           className="underline text-right text-xs"
@@ -93,7 +93,7 @@ function TTC(props) {
       {props.devView &&
         <section>
           <div>
-            <h2>
+            <h2 className="dark:text-white">
               Subway
             </h2>
             {tweets.tweetList.filter((tweet) => tweet.routeType === "subway").map((tweet, index) => {
