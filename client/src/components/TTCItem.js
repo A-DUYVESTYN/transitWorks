@@ -5,7 +5,7 @@ const TTCItem = (props) => {
   const {tweet} = props;
 
   return (
-    <div className="md:max-w-lg ">
+    <div className="md:max-w-lg">
       <article className="flex flex-row">
         <div>
           <div className={`flex flex-col justify-center items-center h-full w-14 ${tweet.routeColor}`}>
@@ -14,7 +14,7 @@ const TTCItem = (props) => {
         </div>
         <div className="grow">
           <p className="m-1">{tweet.text}</p>
-          <div className="text-right text-secondary text-xs">
+          <div className="mx-1 text-right text-secondary text-xs">
             <ReactTimeAgo
               date={Date.parse(tweet.created_at)}
               locale="en-US"

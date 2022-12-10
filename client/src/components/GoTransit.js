@@ -36,7 +36,7 @@ function GoTransit(props) {
       <h1 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">
         GO TRANSIT
       </h1>
-      <section className="divide-y bg-slate-400">
+      <section className="divide-y bg-slate-400 dark:bg-slate-500">
         {alerts.alertList.map((alert, index) => {
           return (
             <div key={index} id={"goAlert" + index}>

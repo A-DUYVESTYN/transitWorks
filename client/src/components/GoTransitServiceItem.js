@@ -21,7 +21,7 @@ const GoTransitServiceItem = (props) => {
           </div>
           <div className="">
             <p className="m-1">{alert.BodyEnglish}</p>
-            <div className="text-right text-secondary text-xs">
+            <div className="text-right mx-1 text-secondary text-xs">
               <ReactTimeAgo
                 date={Date.parse(alert.PostedDateTime)}
                 locale="en-US"

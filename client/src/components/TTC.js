@@ -80,7 +80,7 @@ function TTC(props) {
           TTCnotices
         </a>
       </h1>
-      <section className="divide-y bg-slate-400">
+      <section className="divide-y bg-slate-400 dark:bg-slate-500">
         {tweets.tweetList.map((tweet, index) => {
           return (
             <div key={index} id={"ttcNotice" + index}>
@@ -96,13 +96,15 @@ function TTC(props) {
             <h2 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">
               Subway
             </h2>
-            {tweets.tweetList.filter((tweet) => tweet.routeType === "subway").map((tweet, index) => {
-              return (
-                <div key={index} id={"subwayNotice" + index}>
-                  <TTCItem tweet={tweet} />
-                </div>
-              )
-            })}
+            <section className="divide-y bg-slate-400 dark:bg-slate-500">
+              {tweets.tweetList.filter((tweet) => tweet.routeType === "subway").map((tweet, index) => {
+                return (
+                  <div key={index} id={"subwayNotice" + index}>
+                    <TTCItem tweet={tweet} />
+                  </div>
+                )
+              })}
+            </section>
           </div>
         </section>
       }
