@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
 import TTCItem from "./TTCItem";
+import TTCpref from "./TTCpref";
 
 function TTC(props) {
   const [tweets, setTweets] = useState({
@@ -9,6 +10,14 @@ function TTC(props) {
     twitterId: "19025957",
     tweetList: [],
   });
+
+  const [view, setView] = useState("app")  // switch between app or preferences
+
+  const [ttcPref, setTtcPref] = useState({
+    routes: [1, 2, 80, 76, 15],  // temp default set to [1,2,80,76,15]
+    stations: [], // Royal York, St george
+  })
+
 
   // const railRoutes = [1,2,3,4,301,304,306,310,501,503,504,505,506,509,510,511,512]
   // bus routes not included in routes array: 7 to 189, 300 to 396 (blue night), 400-405 (community bus), 900 - 996 (express)
@@ -79,6 +88,11 @@ function TTC(props) {
         >
           TTCnotices
         </a>
+        <span class="text-center">
+          <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="drawer-backdrop" data-drawer-show="drawer-backdrop" data-drawer-backdrop="true" aria-controls="drawer-backdrop">
+            settings
+          </button>
+        </span>
       </h1>
       <section className="divide-y bg-slate-400 dark:bg-slate-500">
         {tweets.tweetList.map((tweet, index) => {
@@ -108,6 +122,7 @@ function TTC(props) {
           </div>
         </section>
       }
+      
     </div>
   )
 }
