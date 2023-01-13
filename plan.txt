@@ -12,7 +12,8 @@
 
   [DONE]show a list of My Routes with add/delete buttons
   [DONE]delete route when button is pressed
-  for "add", show a scrollable list of TTC routes to follow, classify as Subway, Bus, Streetcar, blueNight
+  for "add", show a scrollable list of TTC routes to follow, multi-click to add multiple routes
+  classify as Subway, Bus, Streetcar, blueNight and show appropriate colour
   Save this to userpref state.
   update database with user's preferences. use mongoDB.
   filter route list on main page by userPref
@@ -32,10 +33,6 @@ COLOR CODES:
 
   GO TRANSIT
   light green: 68952d,  rgba(104,149,45)
-
-
-
-
 
 
 try to get service disruptions alternatively from TTC website using a webscraper 
