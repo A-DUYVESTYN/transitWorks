@@ -5,6 +5,21 @@
   display them in a list on a simple page.
   classify the notice by rail line / route
 
+
+
+
+  TODO within settings menu:
+
+  [DONE]show a list of My Routes with add/delete buttons
+  [DONE]delete route when button is pressed
+  for "add", show a scrollable list of TTC routes to follow, classify as Subway, Bus, Streetcar, blueNight
+  Save this to userpref state.
+  update database with user's preferences. use mongoDB.
+  filter route list on main page by userPref
+
+  Add go transit routes (similarly) 
+  
+
 COLOR CODES:
   Line 1: f8c300, rgb(248, 195, 0)
   Line 2: 00923f, rgb(0, 146, 63)
@@ -17,6 +32,9 @@ COLOR CODES:
 
   GO TRANSIT
   light green: 68952d,  rgba(104,149,45)
+
+
+
 
 
 
