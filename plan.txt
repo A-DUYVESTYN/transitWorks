@@ -12,13 +12,18 @@
 
   [DONE]show a list of My Routes with add/delete buttons
   [DONE]delete route when button is pressed
-  for "add", show a scrollable list of TTC routes to follow, multi-click to add multiple routes
+  [DONE]for "add", show a scrollable list of TTC routes to follow, 
+  [DONE]Save this to userpref state.
   classify as Subway, Bus, Streetcar, blueNight and show appropriate colour
-  Save this to userpref state.
   update database with user's preferences. use mongoDB.
   filter route list on main page by userPref
-
+  provide the option to "show all routes" on main page
   Add go transit routes (similarly) 
+
+STRETCH
+ in settings, allow clicking multiple routes at once to add
+
+
   
 
 COLOR CODES:

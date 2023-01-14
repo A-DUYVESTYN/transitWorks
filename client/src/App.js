@@ -5,7 +5,7 @@ import TTC from "./components/TTC";
 import GoTransit from "./components/GoTransit";
 import Footer from "./components/Footer";
 import Settings from "./components/Settings";
-
+import routeList from "./data/routeList";
 
 function App() {
   const [devView, setDevView] = useState(false)
@@ -40,7 +40,7 @@ function App() {
           <h1 className="p-2 mx-4 font-medium text-gray-700 dark:text-gray-200">
             Transit Service Disruptions
           </h1>
-          <Settings userPref={userPref} setUserPref={setUserPref}></Settings>
+          <Settings userPref={userPref} setUserPref={setUserPref} routeList={routeList}></Settings>
         </div>
         <div className="flex flex-col md:flex-row justify-evenly">
           <TTC devView={devView} userPref={userPref} className="w-60" />

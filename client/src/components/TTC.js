@@ -15,7 +15,7 @@ function TTC(props) {
 
   const formatTweets = (tweetArr) => {
     const getRouteNumber = function (input) {
-      const match = input.match(/\b([0-9]|[1-9][0-9]|[1-9][0-9][0-9])\b/);
+      const match = input.match(/\b([0-9]|[1-9][0-9]|[1-9][0-9][0-9])(?=[A-Z]|\b)/);  //regex match 0-999 in word boundaries. Allow one lookahead A-Z char (e.g. bus# 36F).
       if (match) {
         return Number(match[0]);
       }
