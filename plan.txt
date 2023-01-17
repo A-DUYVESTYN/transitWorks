@@ -20,6 +20,9 @@
   provide the option to "show all routes" on main page
   Add go transit routes (similarly) 
 
+  Add header to the TTC and GO components with horizontal lines: 
+    Route, Notice
+
 STRETCH
  in settings, allow clicking multiple routes at once to add
 

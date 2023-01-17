@@ -16,9 +16,9 @@ export default function Settings(props) {
   }
 
   const filterRouteList = function (allRoutesArr,usersRoutesArr) {
-    console.log(usersRoutesArr)
+    // console.log(usersRoutesArr)
     const routesOtherThanUsers = allRoutesArr.filter(e => !usersRoutesArr.includes(e))
-    console.log(routesOtherThanUsers)
+    // console.log(routesOtherThanUsers)
     return routesOtherThanUsers
   }
 
