@@ -5,8 +5,9 @@ const GoTransitServiceItem = (props) => {
   const { alert } = props;
 
   const formatLines = (rawRouteNums) => {
-    const routeNumbersArr = rawRouteNums.map(route => route.Code)
-    return routeNumbersArr.join(", ")
+    const routeNumbersString = rawRouteNums.map(route => route.Code).join(", ")
+    console.log("routeNumbersString:", routeNumbersString)
+    return routeNumbersString
   }
 
   return (
