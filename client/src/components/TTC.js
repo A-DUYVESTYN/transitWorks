@@ -4,6 +4,8 @@ import React from "react";
 import TTCItem from "./TTCItem";
 
 function TTC(props) {
+  const { devView, userPref } = props;
+  const [loading, setLoading] = useState(true)
   const [tweets, setTweets] = useState({
     twitterUser: "@ttcnotices",
     twitterId: "19025957",
@@ -15,10 +17,9 @@ function TTC(props) {
 
   const formatTweets = (tweetArr) => {
     const getRouteNumber = function (input) {
-      const match = input.match(/\b([0-9]|[1-9][0-9]|[1-9][0-9][0-9])(?=[A-Z]|\b)/);  //regex match 0-999 in word boundaries. Allow one lookahead A-Z char (e.g. bus# 36F).
-      if (match) {
-        return Number(match[0]);
-      }
+      //regex match 0-999 in word boundaries. Allow one lookahead A-Z char (e.g. bus# 36F)
+      const match = input.match(/\b([0-9]|[1-9][0-9]|[1-9][0-9][0-9])(?=[A-Z]|\b)/);  
+      if (match) { return Number(match[0]) }
       return "-";
     }
     const getRouteColor = function (num) {
@@ -54,6 +55,7 @@ function TTC(props) {
   };
 
   useEffect(() => {
+    setLoading(true)
     axios.get(`${process.env.REACT_APP_SERVER_URL}/ttcAlerts`)
       .then(res => {
         const formattedData = formatTweets(res.data.data)
@@ -64,7 +66,8 @@ function TTC(props) {
       })
       .catch((err) => {
         console.log("twitter GET error:", err);
-      });
+      })
+      .finally(() => setLoading(false))
   }, []);
 
   return (
@@ -80,17 +83,42 @@ function TTC(props) {
           TTCnotices
         </a>
       </h1>
-      <section className="divide-y bg-slate-400 dark:bg-slate-500">
-        {tweets.tweetList.map((tweet, index) => {
-          return (
-            <div key={index} id={"ttcNotice" + index}>
-              <TTCItem tweet={tweet} />
-            </div>
-          );
-        })}
-      </section>
+      {loading && <section> Loading Service Notices</section>}
+      {!loading &&
+        <div>
+          <div>
+            <h2 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">
+              My Routes
+            </h2>
+            
+            <section className="divide-y bg-slate-400 dark:bg-slate-500">
+              {tweets.tweetList.filter((tweet) => userPref.ttCroutes.includes(tweet.routeNumber)).map((tweet, index) => {
+                return (
+                  <div key={index} id={"myRouteTtcNotice" + index}>
+                    <TTCItem tweet={tweet} />
+                  </div>
+                );
+              })}
+            </section>
+          </div>
+          <div>
+            <h2 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">
+              All Service Notices
+            </h2>
+            <section className="divide-y bg-slate-400 dark:bg-slate-500">
+              {tweets.tweetList.map((tweet, index) => {
+                return (
+                  <div key={index} id={"ttcNotice" + index}>
+                    <TTCItem tweet={tweet} />
+                  </div>
+                );
+              })}
+            </section>
+          </div>
+        </div>
+      }
 
-      {props.devView &&
+      {devView &&
         <section>
           <div>
             <h2 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">
@@ -108,7 +136,7 @@ function TTC(props) {
           </div>
         </section>
       }
-      
+    
     </div>
   )
 }

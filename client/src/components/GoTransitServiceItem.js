@@ -6,7 +6,7 @@ const GoTransitServiceItem = (props) => {
 
   const formatLines = (rawRouteNums) => {
     const routeNumbersString = rawRouteNums.map(route => route.Code).join(", ")
-    console.log("routeNumbersString:", routeNumbersString)
+    // console.log("routeNumbersString:", routeNumbersString)
     return routeNumbersString
   }
 
