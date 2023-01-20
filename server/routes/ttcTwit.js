@@ -15,7 +15,7 @@ const getTweets = () => {
   }
   return axios(config)
   .then( (res) => {
-    // console.log("####### Twitter respose data: ",JSON.stringify(res.data));
+    // console.log("####### Twitter respose data: ",(res.data));
     return res.data
   })
   .catch( (err) =>  {

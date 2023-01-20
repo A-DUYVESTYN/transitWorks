@@ -4,6 +4,7 @@ import React from "react";
 import GoTransitServiceItem from "./GoTransitServiceItem";
 
 function GoTransit(props) {
+  const [loading, setLoading] = useState(true)
   const [alerts, setAlerts] = useState({
     alertList: [],
   });
@@ -18,6 +19,7 @@ function GoTransit(props) {
   }
   
   useEffect(() => {
+    setLoading(true)
     axios.get(`${process.env.REACT_APP_SERVER_URL}/goTransit`)
       .then(res => {
         const formattedData = formatAlerts(res.data)
@@ -28,23 +30,27 @@ function GoTransit(props) {
       })
       .catch((err) => {
         console.log("twitter GET error:", err);
-      });
+      })
+      .finally(() => setLoading(false))
   }, []);
 
   return (
     <div className="flex-col">
-      <h1 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">
+      <h1 className="p-0.5 mx-1 font-medium text-gray-700 dark:text-gray-200">
         GO TRANSIT
       </h1>
-      <section className="divide-y bg-slate-400 dark:bg-slate-500">
-        {alerts.alertList.map((alert, index) => {
-          return (
-            <div key={index} id={"goAlert" + index}>
-              <GoTransitServiceItem alert={alert} />
-            </div>
-          );
-        })}
-      </section>
+      {loading && <section> Loading Service Notices</section>}
+      {!loading &&
+        <section className="divide-y bg-slate-400 dark:bg-slate-500">
+          {alerts.alertList.map((alert, index) => {
+            return (
+              <div key={index} id={"goAlert" + index}>
+                <GoTransitServiceItem alert={alert} />
+              </div>
+            );
+          })}
+        </section> 
+      }
     </div>
 
   )
