@@ -1,10 +1,10 @@
-# TransitWorks - Delivers up to the minute service notices for your daily tranist routes
+# TransitWorks - Delivers up to the minute service notices for your daily transit routes
 ## Project Description
 
-Get a no-nonsense list of the latest delays, cacellations, or advisories on your public transit systems.
+Get a no-nonsense list of the latest delays, cancellations, or advisories on your public transit systems.
 Customize your app to see only notices from your selected routes.
 
-Curretly Supports TTC and Go Transit.
+Currently Supports TTC and Go Transit.
 
 ## Client Setup
 
@@ -17,12 +17,12 @@ Curretly Supports TTC and Go Transit.
 - Install dependencies with `npm install`.
 - Create .env file and ensure all necessary API keys from .env.example are present.
 - Once run `npm start` from the root directory of the project to launch the server. 
-- alternatively run `npm run dev` to use nodemon
+- Alternatively run `npm run dev` to use nodemon
 
 **Note** : _For full functionality of the web application, both the client and the API server applications must be running_
 
 ## Project Stack
 
-__Front-End:__ JavaScript, HTML, React, Axios, TailwindCSS
+__Front-End:__ JavaScript, HTML, React, Axios, TailwindCSS, DiasyUI
 
 __Back-End:__ Express, Node.js,
