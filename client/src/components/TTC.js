@@ -58,6 +58,7 @@ function TTC(props) {
     setLoading(true)
     axios.get(`${process.env.REACT_APP_SERVER_URL}/ttcAlerts`)
       .then(res => {
+        console.log("TTC twitter res.data.data:", res.data.data)
         const formattedData = formatTweets(res.data.data)
         console.log(formattedData)
         setTweets({

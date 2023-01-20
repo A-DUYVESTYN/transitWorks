@@ -4,7 +4,7 @@
 Get a no-nonsense list of the latest delays, cancellations, or advisories on your public transit systems.
 Customize your app to see only notices from your selected routes.
 
-Currently Supports TTC and Go Transit.
+Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 
 ## Client Setup
 
