@@ -1,6 +1,8 @@
+import { useState } from "react";
 
 export default function Settings(props) {
   const { userPref, setUserPref, routeList } = props;
+  const [selected, setSelected] = useState("defaultAddRoute");
 
   const removeTtcRoute = function (route) {
     setUserPref(prev => {
@@ -32,10 +34,10 @@ export default function Settings(props) {
           <h4 className="py-4">My Routes</h4>
           <div className="">
             <div>TTC</div>
-            <select defaultValue="Add a route" className="select select-primary w-full max-w-xs">
-              <option disabled>Add a route</option>
+            <select value={selected} onChange={() => setSelected("defaultAddRoute")} className="select select-primary w-full max-w-xs my-1">
+              <option value="defaultAddRoute"> Add a route</option>
               {filterRouteList(routeList.ttcRouteArr,userPref.ttCroutes).map((routeNum, index) => (
-                <option key={index} value={routeNum} onClick={() => addTtcRoute(routeNum)}>{routeNum}</option>
+                <option key={index} value={routeNum} onClick={(e) => addTtcRoute(routeNum)}>{routeNum}</option>
               ))}
             </select>
             <div className="overflow-x-auto">
@@ -49,7 +51,7 @@ export default function Settings(props) {
                 <tbody>
                   {userPref.ttCroutes.map((routeNum, index) => (
                     <tr key={index} value={routeNum}>
-                      <th>{routeNum}</th>
+                      <td className="font-bold">{routeNum}</td>
                       <td className="w-12">
                         <button className="btn btn-xs btn-square btn-outline" onClick={() => removeTtcRoute(routeNum)}>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>

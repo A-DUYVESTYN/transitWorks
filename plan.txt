@@ -16,8 +16,9 @@
   [DONE]Save this to userpref state.
   classify as Subway, Bus, Streetcar, blueNight and show appropriate colour
   update database with user's preferences. use mongoDB.
-  filter route list on main page by userPref
-  provide the option to "show all routes" on main page
+  [DONE]filter route list on main page by userPref
+  [DONE] "show all routes" on main page
+  provide toggle for "show all routes" on main page
   Add go transit routes (similarly) 
 
   Add header to the TTC and GO components with horizontal lines: 
