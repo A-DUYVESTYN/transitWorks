@@ -22,7 +22,7 @@ function App() {
   }
   const [userPref, setUserPref] = useState({
     ttCroutes: [1, 2, 80, 76, 15],  // temp default set to [1,2,80,76,15]
-    ttCstations: [], // Royal York, St george
+    ttCstations: [], // Royal York, St George
   })
   useEffect(() => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
