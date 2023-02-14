@@ -4,9 +4,9 @@ const mongoose = require('mongoose')
 const db = require('../db/db.config')
 const User = require('../db/user.model')
 
-const getUserById = id => {
-  return User.findById({ _id: id})
-}
+// const getUserById = id => {
+//   return User.findById({ _id: id})
+// }
 
 router.get('/', (req, res) => {
   User.find({}, function(err,data) {
