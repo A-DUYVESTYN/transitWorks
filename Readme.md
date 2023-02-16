@@ -21,7 +21,7 @@ Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 
 ## Database:
 - install and run a mongodb instance and create a database, add the MONGO_URL used for databse connection as an environment variable in .env
-- reset and seed the mongodb database using the script "npm run db:reset"
+- reset and seed the mongodb database using the script `npm run db:reset`
 
 **Note** : _For full functionality of the web application, both the client and the API server applications must be running_
 

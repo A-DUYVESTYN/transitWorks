@@ -93,7 +93,7 @@ function TTC(props) {
             </h2>
             
             <section className="divide-y bg-slate-400 dark:bg-slate-500">
-              {tweets.tweetList.filter((tweet) => userPref.ttCroutes.includes(tweet.routeNumber)).map((tweet, index) => {
+              {tweets.tweetList.filter((tweet) => userPref.TTCroutes.includes(tweet.routeNumber)).map((tweet, index) => {
                 return (
                   <div key={index} id={"myRouteTtcNotice" + index}>
                     <TTCItem tweet={tweet} />

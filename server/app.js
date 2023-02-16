@@ -9,7 +9,7 @@ const indexRouter = require('./routes/index');
 const defaultRoutes = require('./routes/default')
 const ttcAlertRouter = require('./routes/ttcTwit')
 const goTransitRouter = require('./routes/goTransit')
-const usersRouter = require('./routes/users')
+const userRouter = require('./routes/users')
 
 
 const app = express();
@@ -23,7 +23,7 @@ app.use('/', indexRouter);
 app.use('/count', defaultRoutes)
 app.use('/ttcAlerts', ttcAlertRouter)
 app.use('/gotransit', goTransitRouter)
-app.use('/users', usersRouter)
+app.use('/users', userRouter)
 
 
 

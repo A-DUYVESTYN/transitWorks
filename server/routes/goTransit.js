@@ -16,7 +16,7 @@ const getGoTransitAlerts = () => {
   };
   return axios(options)
   .then( (res) => {
-    console.log("####### GO Transit API respose data: ",res.data);
+    // console.log("####### GO Transit API respose data: ",res.data);
     return res.data.Messages.Message
   })
   .catch( (err) =>  {
