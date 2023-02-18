@@ -20,6 +20,8 @@
   [DONE] "show all routes" on main page
   provide toggle for "show all routes" on main page
   Add go transit routes (similarly) 
+  good guide for CRUD with mongoDB & mongoose
+  https://dev.to/halented/part-2-creating-models-for-mongodb-with-mongoose-575d
 
   Add header to the TTC and GO components with horizontal lines: 
     Route, Notice
