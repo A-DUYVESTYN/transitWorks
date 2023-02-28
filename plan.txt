@@ -8,15 +8,15 @@
 
 
 
-  TODO within settings menu:
+  TODO:
 
-  [DONE]show a list of My Routes with add/delete buttons
-  [DONE]delete route when button is pressed
-  [DONE]for "add", show a scrollable list of TTC routes to follow, 
-  [DONE]Save this to userpref state.
-  classify as Subway, Bus, Streetcar, blueNight and show appropriate colour
+  [DONE] SETTINGS - show a list of My Routes with add/delete buttons
+  [DONE] SETTINGS - delete route when button is pressed
+  [DONE] SETTINGS - for "add", show a scrollable list of TTC routes to follow, 
+  [DONE] SETTINGS - Save this to userpref state.
+  SETTINGS - classify as Subway, Bus, Streetcar, blueNight and show appropriate colour
   update database with user's preferences. use mongoDB.
-  [DONE]filter route list on main page by userPref
+  [DONE] filter route list on main page by userPref
   [DONE] "show all routes" on main page
   provide toggle for "show all routes" on main page
   Add go transit routes (similarly) 

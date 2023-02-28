@@ -32,6 +32,7 @@ export default function Settings(props) {
       <div className="modal">
         <div className="modal-box w-11/12 max-w-5xl bg-slate-300 dark:bg-slate-800  text-gray-700 dark:text-gray-200">
           <h3 className="font-bold text-lg">Settings</h3>
+          {userPref.UserName && <p>Logged in as: {userPref.UserName}</p>}
           <h4 className="py-4">My Routes</h4>
           <div className="">
             <select 
