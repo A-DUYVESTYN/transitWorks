@@ -23,7 +23,7 @@ function GoTransit(props) {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/goTransit`)
       .then(res => {
         const formattedData = formatAlerts(res.data)
-        console.log(formattedData)
+        // console.log(formattedData)
         setAlerts({
           alertList: formattedData
         });

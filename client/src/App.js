@@ -32,29 +32,35 @@ function App() {
   }, [theme])
 
   // user data setup
-  const [userID, setUserID] = useState("63eeba3b390423a6f5c7e96f"); // for development, defualt to user 63eeba3b390423a6f5c7e96f "Pat"
+  const [userID, setUserID] = useState("63ffa2f47a7eaadef8696748"); // for development, defualt to user 63eeba3b390423a6f5c7e96f, userName "Pat"
   const [userPref, setUserPref] = useState({
     _id: null,
-    UserName: null,
-    UserEmail: null,
-    UserPassword: null,
-    TTCroutes: [],
-    TTCstations: [],
+    userName: null,
+    userEmail: null,
+    userPassword: null,
+    ttcRoutes: [],
+    ttcStations: [],
   })
 
   useEffect(() => {
     if (userID) {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`)
       .then((res) => {
-        setUserPref(res.data)
+        if (res.data) {
+          setUserPref((prev) => {
+            console.log(`changing user pref from: ${JSON.stringify(prev)} to ${JSON.stringify(res.data)}`)
+            return res.data
+          })
+        }
+        if (!res.data) console.log(`Unable to retrieve user data for user ID ${userID}`)
       })
       .catch((err) => {
         console.log(err);
       });
     }
   }, [userID])
-  //   // TTCroutes: [1, 2, 80, 76, 15],  // temp default set to [1,2,80,76,15]
-  //   // TTCstations: [], // Royal York, St George
+  //   // ttcRoutes: [1, 2, 80, 76, 15],  // temp default set to [1,2,80,76,15]
+  //   // ttcStations: [], // Royal York, St George
 
 
   return (

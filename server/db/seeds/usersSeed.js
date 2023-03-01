@@ -1,25 +1,25 @@
 const User = require('../user.model')
 const users = [
   new User({
-    UserName: "Andy", 
-    UserEmail: "andy@gmail.com", 
-    UserPassword: "12345",
-    TTCroutes: [1, 2, 80, 76, 15],
-    TTCstations: ["Royal York", "St George"]
+    userName: "Andy", 
+    userEmail: "andy@gmail.com", 
+    userPassword: "12345",
+    ttcRoutes: [1, 2, 80, 76, 15],
+    ttcStations: ["Royal York", "St George"]
   }),
   new User({
-    UserName: "Pat", 
-    UserEmail: "pat@gmail.com", 
-    UserPassword: "12345",
-    TTCroutes: [2, 4, 112, 501, 504, 300, 952],
-    TTCstations: ["Union", "Eglinton"]
+    userName: "Pat", 
+    userEmail: "pat@gmail.com", 
+    userPassword: "12345",
+    ttcRoutes: [2, 4, 112, 501, 504, 300, 952],
+    ttcStations: ["Union", "Eglinton"]
   }),
   new User({
-    UserName: "Zero", 
-    UserEmail: "zero@gmail.com", 
-    UserPassword: "12345",
-    TTCroutes: [],
-    TTCstations: []
+    userName: "Zero", 
+    userEmail: "zero@gmail.com", 
+    userPassword: "12345",
+    ttcRoutes: [],
+    ttcStations: []
   }),
 ]
 

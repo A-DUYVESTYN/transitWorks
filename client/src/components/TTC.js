@@ -58,9 +58,9 @@ function TTC(props) {
     setLoading(true)
     axios.get(`${process.env.REACT_APP_SERVER_URL}/ttcAlerts`)
       .then(res => {
-        console.log("TTC twitter res.data.data:", res.data.data)
+        // console.log("TTC twitter res.data.data:", res.data.data)
         const formattedData = formatTweets(res.data.data)
-        console.log(formattedData)
+        // console.log(formattedData)
         setTweets({
           tweetList: formattedData
         });
@@ -88,12 +88,10 @@ function TTC(props) {
       {!loading &&
         <div>
           <div>
-            <h2 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">
-              My Routes
-            </h2>
-            
+            <h2 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">My Routes</h2>
+            {!userPref.ttcRoutes?.length && <p className="p-0.5 mx-2 font-small text-gray-700 dark:text-gray-200">no saved routes</p>}
             <section className="divide-y bg-slate-400 dark:bg-slate-500">
-              {tweets.tweetList.filter((tweet) => userPref.TTCroutes.includes(tweet.routeNumber)).map((tweet, index) => {
+              {tweets.tweetList.filter((tweet) => userPref.ttcRoutes.includes(tweet.routeNumber)).map((tweet, index) => {
                 return (
                   <div key={index} id={"myRouteTtcNotice" + index}>
                     <TTCItem tweet={tweet} />

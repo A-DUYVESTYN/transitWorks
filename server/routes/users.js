@@ -12,9 +12,12 @@ router.get('/', (req, res) => {
 })
 // get specific user
 router.get('/:id', (req, res) => {
+  console.log("Request for user data for user ID:", req.params.id)
   User.findById(req.params.id)
     .exec(function (err, data) {
       if (err) console.log(err)
+      console.log("Query returs data:")
+      console.log(data)
       res.json(data)
     })
 })

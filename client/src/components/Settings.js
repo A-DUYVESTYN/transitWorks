@@ -6,15 +6,15 @@ export default function Settings(props) {
 
   const removeTtcRoute = function (route) {
     setUserPref(prev => {
-      console.log("Deleted TTC route. Updated array:", prev.TTCroutes.filter(e => e !== route))
-      return {...prev, TTCroutes: prev.TTCroutes.filter(e => e !== route)}
+      console.log("Deleted TTC route. Updated array:", prev.ttcRoutes.filter(e => e !== route))
+      return {...prev, ttcRoutes: prev.ttcRoutes.filter(e => e !== route)}
     })
   }
 
   const addTtcRoute = function (route) {
     setUserPref(prev => {
-      console.log("Added TTC route. Updated array:", [...prev.TTCroutes, route])
-      return {...prev, TTCroutes: [...prev.TTCroutes, route]}
+      console.log("Added TTC route. Updated array:", [...prev.ttcRoutes, route])
+      return {...prev, ttcRoutes: [...prev.ttcRoutes, route]}
     })
   }
 
@@ -32,7 +32,7 @@ export default function Settings(props) {
       <div className="modal">
         <div className="modal-box w-11/12 max-w-5xl bg-slate-300 dark:bg-slate-800  text-gray-700 dark:text-gray-200">
           <h3 className="font-bold text-lg">Settings</h3>
-          {userPref.UserName && <p>Logged in as: {userPref.UserName}</p>}
+          {userPref.userName && <p>Logged in as: {userPref.userName}</p>}
           <h4 className="py-4">My Routes</h4>
           <div className="">
             <select 
@@ -40,7 +40,7 @@ export default function Settings(props) {
               onChange={() => setSelected("defaultAddRoute")} 
               className="select select-primary  text-gray-700 w-full my-1">
               <option value="defaultAddRoute"> Add a TTC Route</option>
-              {filterRouteList(routeList.ttcRouteArr,userPref.TTCroutes).map((routeNum, index) => (
+              {filterRouteList(routeList.ttcRouteArr,userPref.ttcRoutes).map((routeNum, index) => (
                 <option key={index} value={routeNum} onClick={(e) => addTtcRoute(routeNum)}>{routeNum}
                 </option>
               ))}
@@ -54,7 +54,7 @@ export default function Settings(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {[...userPref.TTCroutes].sort((a, b) => (a - b)).map((routeNum, index) => (
+                  {[...userPref.ttcRoutes].sort((a, b) => (a - b)).map((routeNum, index) => (
                     <tr key={index} value={routeNum}>
                       <td className="font-bold py-1">{routeNum}</td>
                       <td className="w-12 py-1">
