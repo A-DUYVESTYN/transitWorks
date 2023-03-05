@@ -26,9 +26,16 @@
   Add header to the TTC and GO components with horizontal lines: 
     Route, Notice
 
-STRETCH
- in settings, allow clicking multiple routes at once to add
+  STRETCH
+  in settings, allow clicking multiple routes at once to add
 
+  TODO (db calls and frontend api calls):
+  [DONE] get users data, forcing a userID for development (must update hardcoded userID on frontend if db is reset)
+  Update users ttcroutes array from frontend
+  delete user
+  login
+    save userid in localstorage
+    create user in db
 
   
 

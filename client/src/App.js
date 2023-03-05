@@ -20,8 +20,6 @@ function App() {
     console.log(window.matchMedia('(prefers-color-scheme: dark)'))
     console.log(document.documentElement.classList)
   }
- 
-
   useEffect(() => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
     else setTheme('light');
@@ -42,6 +40,34 @@ function App() {
     ttcStations: [],
   })
 
+  const addTtcRoute = function (route) { 
+    const newRouteArr = [...userPref.ttcRoutes, route]
+    axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/${userID}`, {...userPref,  ttcRoutes: newRouteArr})
+    .then(() => {
+      setUserPref(prev => {
+        console.log("Added TTC route. Updated array:", newRouteArr)
+        return {...prev, ttcRoutes: newRouteArr}
+      })
+    })
+    .catch((err) => {
+      console.log("Error message on PUT:", err)
+    })
+  }
+  
+  const removeTtcRoute = function (route) {
+    const newRouteArr = [...userPref.ttcRoutes.filter(e => e !== route)]
+    axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/${userID}`, {...userPref,  ttcRoutes: newRouteArr})
+    .then(() => {
+      setUserPref(prev => {
+        console.log("Removed TTC route. Updated array:", newRouteArr)
+        return {...prev, ttcRoutes: newRouteArr}
+      })
+    })
+    .catch((err) => {
+      console.log("Error message on PUT:", err)
+    })
+  }
+  
   useEffect(() => {
     if (userID) {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`)
@@ -71,7 +97,7 @@ function App() {
             TransitWorks
             <p className="text-sm">your latest updates on transit service</p>
           </h1>
-          <Settings userPref={userPref} setUserPref={setUserPref} routeList={routeList}></Settings>
+          <Settings userName={userPref.userName} ttcRoutes={userPref.ttcRoutes} addTtcRoute={addTtcRoute} removeTtcRoute={removeTtcRoute} routeList={routeList}></Settings>
         </div>
         <div className="flex flex-col md:flex-row justify-evenly">
           <TTC devView={devView} userPref={userPref} className="w-60" />
