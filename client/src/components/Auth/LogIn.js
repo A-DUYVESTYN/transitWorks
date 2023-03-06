@@ -20,16 +20,18 @@ const Login = (props) => {
     e.preventDefault();
     //send post request to backend to login user
     axios
-      .put("http://localhost:8080/api/login", {
+      .put(`${process.env.REACT_APP_SERVER_URL}/users/login`, {
         email: loginUser.email,
-        password: loginUser.password,
+        password: loginUser.password
       })
       .then((res) => {
+        console.log(`login server response:`)
+        console.log(res.data.id)
         props.handleLogin(res.data.id);
         localStorage.setItem("user_id", res.data.id);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("login error");
       });
   };
 

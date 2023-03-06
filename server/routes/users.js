@@ -12,12 +12,12 @@ router.get('/', (req, res) => {
 })
 // get specific user
 router.get('/:id', (req, res) => {
-  console.log("Request for user data for user ID:", req.params.id)
+  // console.log("Request for user data for user ID:", req.params.id)
   User.findById(req.params.id)
     .exec(function (err, data) {
       if (err) console.log(err)
-      console.log("Query returs data:")
-      console.log(data)
+      // console.log("Query returs data:")
+      // console.log(data)
       res.json(data)
     })
 })
@@ -39,11 +39,32 @@ router.delete('/delete/:id', (req, res) => {
 //create user 
 router.post('/new',(req, res) => {
   console.log("received request to create user:", req.body)
-  const newUser = new User(req.body)
+  const newUser = new User({
+    userName: req.body.username, 
+    userEmail: req.body.email, 
+    userPassword: req.body.password,
+    ttcRoutes: [],
+    ttcStations: []
+  })
   newUser.save()
-    .then(user => res.json(user))
-    .catch(err => res.status(400).json("Create user error: " + err))
+    .then(data => res.json({id: data._id}))
+    .catch(err => {
+      console.log(`Unsuccessful signup attempt`)
+      res.status(400).json("Create user error: " + err)
+    })
 })
 
+// log in user
+router.put('/login', (req, res) => {
+  User.findOne({ userEmail: req.body.email, userPassword: req.body.password}, {_id: 1})
+    .then(data => {
+      console.log(`login query return: ${data}`)
+      res.json(data._id? {id: data._id} : null)
+    })
+    .catch(err => {
+      console.log(`Unsuccessful login attempt. email:${req.body.email}, password:${req.body.password}`)
+      res.status(400).json(err)
+    })
+})
 
 module.exports = router;

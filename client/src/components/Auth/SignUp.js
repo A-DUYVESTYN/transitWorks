@@ -7,8 +7,6 @@ const SignUp = (props) => {
     username: "",
     email: "",
     password: "",
-    home_location: "",
-    work_location: "",
   });
 
   // Axios put to send data to backend and create new user to localhost:8080/api/users
@@ -16,7 +14,7 @@ const SignUp = (props) => {
     e.preventDefault();
     //send post request to backend to create new user
     axios
-      .put("http://localhost:8080/api/users", {
+      .post(`${process.env.REACT_APP_SERVER_URL}/users/new`, {
         username: signupUser.username,
         email: signupUser.email,
         password: signupUser.password,
