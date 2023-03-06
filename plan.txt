@@ -15,7 +15,7 @@
   [DONE] SETTINGS - for "add", show a scrollable list of TTC routes to follow, 
   [DONE] SETTINGS - Save this to userpref state.
   SETTINGS - classify as Subway, Bus, Streetcar, blueNight and show appropriate colour
-  update database with user's preferences. use mongoDB.
+  [DONE] SETTINGS - update database with user's preferences. use mongoDB.
   [DONE] filter route list on main page by userPref
   [DONE] "show all routes" on main page
   provide toggle for "show all routes" on main page
@@ -31,7 +31,7 @@
 
   TODO (db calls and frontend api calls):
   [DONE] get users data, forcing a userID for development (must update hardcoded userID on frontend if db is reset)
-  Update users ttcroutes array from frontend
+  [DONE] Update users ttcroutes array from frontend
   delete user
   login
     save userid in localstorage

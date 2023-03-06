@@ -1,27 +1,27 @@
 import { useState } from "react";
 
 export default function Settings(props) {
-  const { userName, ttcRoutes, addTtcRoute, removeTtcRoute, routeList } = props;
+  const { userName, ttcRoutes, addTtcRoute, logout, removeTtcRoute, routeList } = props;
   const [selected, setSelected] = useState("defaultAddRoute");
 
 
 
   const filterRouteList = function (allRoutesArr,usersRoutesArr) {
     // console.log(usersRoutesArr)
-    const routesOtherThanUsers = allRoutesArr.filter(e => !usersRoutesArr.includes(e))
+    const notUsersRoutes = allRoutesArr.filter(e => !usersRoutesArr.includes(e))
     // console.log(routesOtherThanUsers)
-    return routesOtherThanUsers
+    return notUsersRoutes
   }
-
+  // adapted from DaisyUI component "Model with custom width"
   return (
     <div>
       <label htmlFor="my-modal-5" className="btn">Settings</label>
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box w-11/12 max-w-5xl bg-slate-300 dark:bg-slate-800  text-gray-700 dark:text-gray-200">
-          <h3 className="font-bold text-lg">Settings</h3>
-          {userName && <p>Logged in as: {userName}</p>}
-          <h4 className="py-4">My Routes</h4>
+          <h3 className="font-bold text-lg text-center">Settings</h3>
+         
+          <h4 className="mt-2 py-2 border-t-4 text-center">My Routes</h4>
           <div className="">
             <select 
               value={selected} 
@@ -56,8 +56,10 @@ export default function Settings(props) {
               </table>
             </div>
           </div>
-
-
+          <div className="flex justify justify-center items-center mt-2 py-2 border-y-4">
+            {userName && <div className="">Logged in as: {userName} </div>}
+            <button className="btn btn-sm btn-error mx-4" onClick={logout} >Logout</button>
+          </div>
           <div className="modal-action">
             <label htmlFor="my-modal-5" className="btn">Close</label>
           </div>

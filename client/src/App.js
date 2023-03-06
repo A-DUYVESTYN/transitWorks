@@ -6,6 +6,7 @@ import GoTransit from "./components/GoTransit";
 import Footer from "./components/Footer";
 import Settings from "./components/Settings";
 import routeList from "./data/routeList";
+import { default as Auth } from "./components/Auth/Index";
 
 function App() {
   const [devView, setDevView] = useState(false)
@@ -40,6 +41,15 @@ function App() {
     ttcStations: [],
   })
 
+  const handleLogin = (id) => {
+    setUserID(id);
+  };
+  //function to clear the local storage item for user_id
+  const clearUserSession = () => {
+    localStorage.removeItem("user_id");
+    setUserID(null);
+  };
+
   const addTtcRoute = function (route) { 
     const newRouteArr = [...userPref.ttcRoutes, route]
     axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/${userID}`, {...userPref,  ttcRoutes: newRouteArr})
@@ -53,7 +63,7 @@ function App() {
       console.log("Error message on PUT:", err)
     })
   }
-  
+
   const removeTtcRoute = function (route) {
     const newRouteArr = [...userPref.ttcRoutes.filter(e => e !== route)]
     axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/${userID}`, {...userPref,  ttcRoutes: newRouteArr})
@@ -90,23 +100,34 @@ function App() {
 
 
   return (
-    <div className="flex flex-col mb-10 bg-slate-300 dark:bg-slate-800">
-      <div className="grow">
-        <div className='flex flex-row justify-between'>
-          <h1 className="p-2 mx-4 text-gray-700 dark:text-gray-200">
-            TransitWorks
-            <p className="text-sm">your latest updates on transit service</p>
-          </h1>
-          <Settings userName={userPref.userName} ttcRoutes={userPref.ttcRoutes} addTtcRoute={addTtcRoute} removeTtcRoute={removeTtcRoute} routeList={routeList}></Settings>
+    <>
+    {!userID && (<Auth userID={userID} handleLogin={handleLogin} />)}
+    {userID && (
+      <div className="flex flex-col mb-10 bg-slate-300 dark:bg-slate-800">
+        <div className="grow">
+          <div className='flex flex-row justify-between'>
+            <h1 className="p-2 mx-4 text-gray-700 dark:text-gray-200">
+              TransitWorks
+              <p className="text-sm">your latest updates on transit service</p>
+            </h1>
+            <Settings 
+            userName={userPref.userName} 
+            ttcRoutes={userPref.ttcRoutes} 
+            addTtcRoute={addTtcRoute} 
+            removeTtcRoute={removeTtcRoute} 
+            routeList={routeList} 
+            logout={clearUserSession}></Settings>
+          </div>
+          <div className="flex flex-col md:flex-row justify-evenly">
+            <TTC devView={devView} userPref={userPref} className="w-60" />
+            <GoTransit devView={devView} userPref={userPref} className="w-60" />
+          </div>
         </div>
-        <div className="flex flex-col md:flex-row justify-evenly">
-          <TTC devView={devView} userPref={userPref} className="w-60" />
-          <GoTransit devView={devView} userPref={userPref} className="w-60" />
-        </div>
-      </div>
 
-      <Footer handleThemeSwitch={handleThemeSwitch} toggleDevView={toggleDevView} />
-    </div>
+        <Footer handleThemeSwitch={handleThemeSwitch} toggleDevView={toggleDevView} />
+      </div>
+    )}
+    </>
   );
 }
 
