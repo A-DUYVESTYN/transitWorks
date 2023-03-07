@@ -31,7 +31,7 @@ function App() {
   }, [theme])
 
   // user data setup
-  const [userID, setUserID] = useState("63ffa2f47a7eaadef8696748"); // for development, defualt to user 63eeba3b390423a6f5c7e96f, userName "Pat"
+  const [userID, setUserID] = useState(null); // for development, defualt to user 63eeba3b390423a6f5c7e96f, userName "Pat"
   const [userPref, setUserPref] = useState({
     _id: null,
     userName: null,
@@ -77,22 +77,30 @@ function App() {
       console.log("Error message on PUT:", err)
     })
   }
+  useEffect(() => {
+    let user_id = localStorage.getItem("user_id");
+    if (!user_id) {
+      // redirect to login and
+      return;
+    }
+    setUserID(user_id);
+  }, [])
   
   useEffect(() => {
     if (userID) {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`)
-      .then((res) => {
-        if (res.data) {
-          setUserPref((prev) => {
-            console.log(`changing user pref from: ${JSON.stringify(prev)} to ${JSON.stringify(res.data)}`)
-            return res.data
-          })
-        }
-        if (!res.data) console.log(`Unable to retrieve user data for user ID ${userID}`)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`)
+        .then((res) => {
+          if (res.data) {
+            setUserPref((prev) => {
+              // console.log(`changing user pref from: ${JSON.stringify(prev)} to ${JSON.stringify(res.data)}`)
+              return res.data
+            })
+          }
+          if (!res.data) console.log(`Unable to retrieve user data for user ID ${userID}`)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [userID])
   //   // ttcRoutes: [1, 2, 80, 76, 15],  // temp default set to [1,2,80,76,15]
