@@ -8,9 +8,9 @@ const TTCItem = (props) => {
     <div className="md:max-w-lg">
       <article className="flex flex-row">
         <div className="text-gray-900">
-          <div className={`flex flex-col justify-center items-center h-full w-14 ${tweet.routeColor}`}>
+          <h2 className={`flex flex-col justify-center items-center h-full w-14 ${tweet.routeColor}`}>
             <p className="text-2xl font-semibold">{tweet.routeNumber}</p>
-          </div>
+          </h2>
         </div>
         <div className="grow text-gray-700 dark:text-gray-900">
           <p className="m-1">{tweet.text}</p>

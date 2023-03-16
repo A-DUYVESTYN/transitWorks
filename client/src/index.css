@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+  font-family: "jost";
+  src: local("Jost-VariableFont_wght"), url("./fonts/Jost-VariableFont_wght.ttf") format("truetype");
+}
+@font-face {
+  font-family: "jost-italic";
+  src: local("Jost-Italic-VariableFont_wght"), url("./fonts/Jost-Italic-VariableFont_wght.ttf") format("truetype");
+}

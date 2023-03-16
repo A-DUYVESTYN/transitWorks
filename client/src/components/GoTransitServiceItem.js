@@ -13,9 +13,9 @@ const GoTransitServiceItem = (props) => {
   return (
     <div className="md:max-w-lg ">
       <article className="flex flex-row">
-        <div className="flex-none w-14 text-gray-900 bg-[#68952d]">
+        <h2 className="flex-none w-14 text-gray-900 bg-[#68952d]">
           <p className="flex items-center justify-center h-full text-2xl font-semibold">{formatLines(alert.Lines)}</p>
-        </div>
+        </h2>
         <div className="text-gray-700 dark:text-gray-900">
           <div className="">
             <p className="font-semibold">{alert.SubCategory}</p>
