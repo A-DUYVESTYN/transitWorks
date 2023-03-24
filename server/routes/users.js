@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose')
 const db = require('../db/db.config')
 const User = require('../db/user.model')
+const bcrypt = require("bcryptjs");
 
 // get all users
 router.get('/', (req, res) => {
@@ -39,10 +40,11 @@ router.delete('/delete/:id', (req, res) => {
 //create user 
 router.post('/new',(req, res) => {
   console.log("received request to create user:", req.body)
+  const newHashedPassword = bcrypt.hashSync(req.body.password, 10);
   const newUser = new User({
     userName: req.body.username, 
     userEmail: req.body.email, 
-    userPassword: req.body.password,
+    userPassword: newHashedPassword,
     ttcRoutes: [],
     ttcStations: []
   })
@@ -56,13 +58,24 @@ router.post('/new',(req, res) => {
 
 // log in user
 router.put('/login', (req, res) => {
-  User.findOne({ userEmail: req.body.email, userPassword: req.body.password}, {_id: 1})
+  const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+  console.log("Login attempt...")
+  User.findOne({ userEmail: req.body.email})
     .then(data => {
-      console.log(`login query return: ${data}`)
-      res.json(data._id? {id: data._id} : null)
+      console.log(`Login query return: ${data}`)
+      !data._id && res.json(null)
+      if (data._id) { 
+        if (bcrypt.compareSync(req.body.password, data.userPassword)) {
+          console.log("Found user, pw match")
+          res.json({id: data._id})
+        } else {
+          console.log("Found user, pw incorrect")
+          res.json(null)
+        }
+      }
     })
     .catch(err => {
-      console.log(`Unsuccessful login attempt. email:${req.body.email}, password:${req.body.password}`)
+      console.log(`Unsuccessful login: db error. email:${req.body.email}, password:${req.body.password}`)
       res.status(400).json(err)
     })
 })

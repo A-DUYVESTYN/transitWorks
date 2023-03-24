@@ -114,7 +114,7 @@ function App() {
       <div className="flex flex-col mb-10 bg-slate-300 dark:bg-slate-800">
         <div className="grow">
           <div className='flex flex-row justify-between'>
-            <h1 className="font-extrabold p-2 mx-4 text-gray-700 dark:text-gray-200">
+            <h1 className="font-extrabold text-lg p-2 mx-4 text-gray-700 dark:text-gray-200">
               TransitWorks
               <p className="text-sm font-light">your latest updates on transit service</p>
             </h1>
