@@ -18,17 +18,18 @@ const Login = (props) => {
   //axios request to send data to backend and login user
   const handleSubmit = (e) => {
     e.preventDefault();
-    //send post request to backend to login user
     axios
       .put(`${process.env.REACT_APP_SERVER_URL}/users/login`, {
         email: loginUser.email,
         password: loginUser.password
       })
       .then((res) => {
-        console.log(`login server response:`)
-        console.log(res.data.id)
-        props.handleLogin(res.data.id);
-        localStorage.setItem("user_id", res.data.id);
+        console.log(`login server response: ${res.data.message}`)
+        if (res.data.id) {
+          console.log(res.data.id)
+          props.handleLogin(res.data.id);
+          // localStorage.setItem("user_id", res.data.id);
+        }
       })
       .catch((err) => {
         console.log("login error");
@@ -67,7 +68,7 @@ const Login = (props) => {
           </div>
         </div>
         <div className="flex flex-row justify-end mr-8 mt-4 h-[5.2rem] items-end">
-          <button className="btn btn-sm btn-primary" type="submit">
+          <button className="btn btn-sm" type="submit">
             Login
           </button>
         </div>

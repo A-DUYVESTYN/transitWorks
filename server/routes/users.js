@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const db = require('../db/db.config')
 const User = require('../db/user.model')
 const bcrypt = require("bcryptjs");
+const saltRounds = 10
 
 // get all users
 router.get('/', (req, res) => {
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
     .catch(err => res.status(400).json('get Error: ' + err))
 })
 // get specific user
-router.get('/:id', (req, res) => {
+router.get('/data/:id', (req, res) => {
   // console.log("Request for user data for user ID:", req.params.id)
   User.findById(req.params.id)
     .exec(function (err, data) {
@@ -40,7 +41,7 @@ router.delete('/delete/:id', (req, res) => {
 //create user 
 router.post('/new',(req, res) => {
   console.log("received request to create user:", req.body)
-  const newHashedPassword = bcrypt.hashSync(req.body.password, 10);
+  const newHashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
   const newUser = new User({
     userName: req.body.username, 
     userEmail: req.body.email, 
@@ -49,35 +50,63 @@ router.post('/new',(req, res) => {
     ttcStations: []
   })
   newUser.save()
-    .then(data => res.json({id: data._id}))
+    .then(data => {
+      req.session.user_id = data._id
+      res.json({id: data._id, message: "New user created"})
+    })
     .catch(err => {
       console.log(`Unsuccessful signup attempt`)
-      res.status(400).json("Create user error: " + err)
+      res.status(400).json(err)
     })
 })
 
 // log in user
 router.put('/login', (req, res) => {
-  const hashedPassword = bcrypt.hashSync(req.body.password, 10);
   console.log("Login attempt...")
   User.findOne({ userEmail: req.body.email})
     .then(data => {
-      console.log(`Login query return: ${data}`)
-      !data._id && res.json(null)
-      if (data._id) { 
+      if (!data) {
+        console.log("User does not exist")
+        res.json({message: "Wrong username/password combination"})
+      } 
+      if (data) { 
         if (bcrypt.compareSync(req.body.password, data.userPassword)) {
-          console.log("Found user, pw match")
-          res.json({id: data._id})
+          req.session.user_id = data._id
+          console.log("req.session.user_id =", req.session.user_id)
+          res.json({id: data._id, message: "User credentials verified"})
         } else {
-          console.log("Found user, pw incorrect")
-          res.json(null)
+          console.log("User exists, incorrect password")
+          res.json({message: "Wrong username/password combination"})
         }
       }
     })
     .catch(err => {
-      console.log(`Unsuccessful login: db error. email:${req.body.email}, password:${req.body.password}`)
-      res.status(400).json(err)
+      console.log(`Unsuccessful login: email:${req.body.email}, password:${req.body.password}`)
+      console.log("error: ",err)
+      res.json({message: "Query Error"})
     })
+})
+
+// check if user is logged in
+router.get("/login", (req,res) => {
+  const currentSession = req.session
+  console.log("////////////// Verify user login:")
+  console.log("req.session:", currentSession)
+  if (currentSession?.user_id) {
+    res.send({loggedIn: true, user: currentSession.user_id})
+  } else {
+    res.send({loggedIn: false, user: null})
+  }
+})
+
+// logout
+router.get('/logout', (req, res, next) => {
+  console.log("Logging user out")
+  req.session.user_id = null
+  req.session.save(function (err) {
+    if (err) next(err)
+  })
+  res.json({message: "logging out"})
 })
 
 module.exports = router;

@@ -15,7 +15,7 @@ export default function Settings(props) {
   // adapted from DaisyUI component "Model with custom width"
   return (
     <div>
-      <label htmlFor="my-modal-5" className="btn">Settings</label>
+      <label htmlFor="my-modal-5" className="btn m-2">User Settings</label>
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box w-11/12 max-w-5xl bg-slate-300 dark:bg-slate-800  text-gray-700 dark:text-gray-200">
@@ -26,7 +26,7 @@ export default function Settings(props) {
             <select 
               value={selected} 
               onChange={() => setSelected("defaultAddRoute")} 
-              className="select select-primary  text-gray-700 w-full my-1">
+              className="select text-gray-700 w-full my-1">
               <option value="defaultAddRoute"> Add a TTC Route</option>
               {filterRouteList(routeList.ttcRouteArr,ttcRoutes).map((routeNum, index) => (
                 <option key={index} value={routeNum} onClick={(e) => addTtcRoute(routeNum)}>{routeNum}
@@ -42,6 +42,11 @@ export default function Settings(props) {
                   </tr>
                 </thead>
                 <tbody>
+                  {ttcRoutes.length === 0 && 
+                    <tr>
+                      <td align="center" colSpan="3">None added</td>
+                    </tr>
+                  }
                   {[...ttcRoutes].sort((a, b) => (a - b)).map((routeNum, index) => (
                     <tr key={index} value={routeNum}>
                       <td className="font-bold py-1">{routeNum}</td>

@@ -6,9 +6,12 @@ import GoTransit from "./components/GoTransit";
 import Footer from "./components/Footer";
 import Settings from "./components/Settings";
 import routeList from "./data/routeList";
+import Header from "./components/Header";
 import { default as Auth } from "./components/Auth/Index";
 
 function App() {
+  axios.defaults.withCredentials = true;
+
   const [devView, setDevView] = useState(false)
   const toggleDevView = () => {
     console.log("changing devView=", devView, " to ", !devView)
@@ -31,7 +34,8 @@ function App() {
   }, [theme])
 
   // user data setup
-  const [userID, setUserID] = useState(null); // for development, defualt to user 63eeba3b390423a6f5c7e96f, userName "Pat"
+  const [userID, setUserID] = useState("LOADING"); // for development, defualt to user 63eeba3b390423a6f5c7e96f, userName "Pat"
+
   const [userPref, setUserPref] = useState({
     _id: null,
     userName: null,
@@ -44,10 +48,15 @@ function App() {
   const handleLogin = (id) => {
     setUserID(id);
   };
-  //function to clear the local storage item for user_id
+  //function to logout and clear cookie
   const clearUserSession = () => {
-    localStorage.removeItem("user_id");
-    setUserID(null);
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/users/logout`)
+    .then((res) => {
+      setUserID(null);
+      console.log(res.data)
+    })
+    // localStorage.removeItem("user_id");
+    
   };
 
   const addTtcRoute = function (route) { 
@@ -78,21 +87,26 @@ function App() {
     })
   }
   useEffect(() => {
-    let user_id = localStorage.getItem("user_id");
-    if (!user_id) {
-      // redirect to login and
-      return;
-    }
-    setUserID(user_id);
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/users/login`)
+      .then((res) => {
+        console.log(`Checking if user is logged in. server response:`)
+        console.log(res)
+        if (res.data.loggedIn) setUserID(res.data.user)
+        if (!res.data.loggedIn) setUserID(null)
+      })
+      .catch((err) => {
+        console.log(err)
+        setUserID(null)
+      })
   }, [])
   
   useEffect(() => {
-    if (userID) {
-      axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`)
+    console.log("inside Appjs useEffect, userID=", userID)
+    if (userID && userID !== "LOADING") {
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/users/data/${userID}`)
         .then((res) => {
           if (res.data) {
             setUserPref((prev) => {
-              // console.log(`changing user pref from: ${JSON.stringify(prev)} to ${JSON.stringify(res.data)}`)
               return res.data
             })
           }
@@ -106,37 +120,36 @@ function App() {
   //   // ttcRoutes: [1, 2, 80, 76, 15],  // temp default set to [1,2,80,76,15]
   //   // ttcStations: [], // Royal York, St George
 
-
-  return (
+  if (!userID) return (<><Header/><Auth userID={userID} handleLogin={handleLogin} /></>)
+  if (userID === "LOADING") return <Header/>
+  if (userID) return (
     <>
-    {!userID && (<Auth userID={userID} handleLogin={handleLogin} />)}
     {userID && (
       <div className="flex flex-col mb-10 bg-slate-300 dark:bg-slate-800">
         <div className="grow">
           <div className='flex flex-row justify-between'>
-            <h1 className="font-extrabold text-lg p-2 mx-4 text-gray-700 dark:text-gray-200">
-              TransitWorks
-              <p className="text-sm font-light">your latest updates on transit service</p>
-            </h1>
-            <Settings 
-            userName={userPref.userName} 
-            ttcRoutes={userPref.ttcRoutes} 
-            addTtcRoute={addTtcRoute} 
-            removeTtcRoute={removeTtcRoute} 
-            routeList={routeList} 
+          <Header/>
+          <Settings
+            userName={userPref.userName}
+            ttcRoutes={userPref.ttcRoutes}
+            addTtcRoute={addTtcRoute}
+            removeTtcRoute={removeTtcRoute}
+            routeList={routeList}
             logout={clearUserSession}></Settings>
           </div>
           <div className="flex flex-col md:flex-row justify-evenly">
-            <TTC devView={devView} userPref={userPref} className="w-60" />
-            <GoTransit devView={devView} userPref={userPref} className="w-60" />
+          <TTC devView={devView} userPref={userPref} className="w-60" />
+          <GoTransit devView={devView} userPref={userPref} className="w-60" />
           </div>
         </div>
-
         <Footer handleThemeSwitch={handleThemeSwitch} toggleDevView={toggleDevView} />
+
+        
       </div>
     )}
     </>
-  );
+
+  )
 }
 
 export default App;

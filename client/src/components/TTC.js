@@ -89,7 +89,7 @@ function TTC(props) {
         <div>
           <div>
             <h2 className="p-0.5 mx-2 font-medium text-gray-700 dark:text-gray-200">My Routes</h2>
-            {!userPref.ttcRoutes?.length && <p className="p-0.5 mx-2 font-small text-gray-700 dark:text-gray-200">no saved routes</p>}
+            {!userPref.ttcRoutes?.length && <p className="p-0.5 font-small text-gray-700 dark:text-gray-200">No saved routes. Add routes in User Settings.</p>}
             <section className="divide-y bg-slate-400 dark:bg-slate-500">
               {tweets.tweetList.filter((tweet) => userPref.ttcRoutes.includes(tweet.routeNumber)).map((tweet, index) => {
                 return (

@@ -33,8 +33,9 @@
   [DONE] get users data, forcing a userID for development (must update hardcoded userID on frontend if db is reset)
   [DONE] Update users ttcroutes array from frontend
   delete user
+  check for duplicate username on signup
   login
-    [DONE]save userid in localstorage
+    [DONE]save userid with cookie
     [DONE]create user in db
 
   

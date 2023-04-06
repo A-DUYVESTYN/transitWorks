@@ -9,7 +9,7 @@ const SignUp = (props) => {
     password: "",
   });
 
-  // Axios put to send data to backend and create new user to localhost:8080/api/users
+  // Axios put to send data to backend and create new user
   const handleSubmit = (e) => {
     e.preventDefault();
     //send post request to backend to create new user
@@ -21,7 +21,7 @@ const SignUp = (props) => {
       })
       .then((res) => {
         props.handleLogin(res.data.id);
-        localStorage.setItem("user_id", res.data.id);
+        // localStorage.setItem("user_id", res.data.id);
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +81,7 @@ const SignUp = (props) => {
           </div>
         </div>
         <div className="flex flex-row justify-end mr-8 mt-4">
-          <button className="btn btn-sm btn-primary" type="submit">
+          <button className="btn btn-sm" type="submit">
             Sign Up
           </button>
         </div>

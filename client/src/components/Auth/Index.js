@@ -7,12 +7,12 @@ const Index = (props) => {
   const [selection, setSelection] = useState("login");
 
   const signUpClass = classnames({
-    "w-1/2 pt-4 pb-2  border-b border-l border-solid  hover:bg-primary rounded-tr-3xl": true,
-    "bg-primary": selection === "signup",
+    "w-1/2 pt-4 pb-2  border-b border-l border-solid  hover:bg-streetcar rounded-tr-3xl": true,
+    "bg-streetcar": selection === "signup",
   });
   const loginClass = classnames({
-    "w-1/2 pt-4 pb-2  border-b border-r border-solid  hover:bg-primary rounded-tl-3xl": true,
-    "bg-primary": selection === "login",
+    "w-1/2 pt-4 pb-2  border-b border-r border-solid  hover:bg-streetcar rounded-tl-3xl": true,
+    "bg-streetcar": selection === "login",
   });
 
   // change selection to "login" or "signup" on click when clicking on the login or signup button
