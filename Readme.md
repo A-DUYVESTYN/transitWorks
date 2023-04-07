@@ -8,6 +8,10 @@ Customize your app to see only notices from your selected routes.
 
 Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 
+ ![Welcome](https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.25.20.png)
+![Dashboard](https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.26.43.png)
+![Customize the transit routes on the dashboard](https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.27.14.png)
+
 ## Project Stack
 
 __Front-End:__ JavaScript, React, Axios, TailwindCSS, DiasyUI
