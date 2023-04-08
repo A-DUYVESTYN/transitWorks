@@ -9,22 +9,22 @@ Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 
 ## Screenshots
  <p align="center" width="100%">
-    <img width="25%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.25.20.png" alt="Welcome Screen">
+    <img width="30%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.25.20.png" alt="Welcome Screen">
 </p>
 
 #### Dashboard
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.26.43.png" alt="Dashboard">
+    <img width="40%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.26.43.png" alt="Dashboard">
 </p>
 
 #### Set your usual transit routes
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.27.14.png" alt="Customize the transit routes on the dashboard">
+    <img width="40%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.27.14.png" alt="Customize the transit routes on the dashboard">
 </p>
 
 #### Tablet Dashboard with TTC and GO feeds
 <p align="center" width="100%">
-    <img width="45%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.46.59%20-%20main%20screen%20(tablet%20-%20landscape).png" alt="Dashboard on Ipad">
+    <img width="66%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.46.59%20-%20main%20screen%20(tablet%20-%20landscape).png" alt="Dashboard on Ipad">
 </p>
 
 ## Project Stack
