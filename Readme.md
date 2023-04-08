@@ -14,7 +14,7 @@ Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 
 #### Dashboard
 <p align="center" width="100%">
-    <img width="40%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.26.43.png" alt="Dashboard">
+    <img width="40%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.25.38%20-%20main%20screen%20(phone).png" alt="Dashboard">
 </p>
 
 #### Set your usual transit routes
