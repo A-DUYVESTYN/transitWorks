@@ -33,6 +33,8 @@ __Front-End:__ JavaScript, React, Axios, TailwindCSS, DiasyUI
 
 __Back-End:__ Express, Node.js, MongoDB Atlas
 
+Please excuse some 1000ms delays here and there when using the UI. I'm Working on moving to faster hosting.
+
 ## Client Setup
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
