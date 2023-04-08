@@ -24,7 +24,7 @@ Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 
 #### Tablet Dashboard with TTC and GO feeds
 <p align="center" width="100%">
-    <img width="66%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.46.59%20-%20main%20screen%20(tablet%20-%20landscape).png" alt="Dashboard on Ipad">
+    <img width="100%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.46.59%20-%20main%20screen%20(tablet%20-%20landscape).png" alt="Dashboard on Ipad">
 </p>
 
 ## Project Stack
