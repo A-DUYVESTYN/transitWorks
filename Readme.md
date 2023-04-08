@@ -30,10 +30,10 @@ Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 ## Project Stack
 
 __Front-End:__ JavaScript, React, Axios, TailwindCSS, DiasyUI
+__Back-End:__ Express, Node.js, 
+__Database:__ MongoDB Atlas
 
-__Back-End:__ Express, Node.js, MongoDB Atlas
-
-Please excuse some 1000ms delays here and there when using the UI. I'm Working on moving to faster hosting.
+_Please excuse some ~1000ms delays here and there when navigating the app. We are working on moving to faster hosting._
 
 ## Client Setup
 
