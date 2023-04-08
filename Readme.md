@@ -2,26 +2,30 @@
 ### Delivers up to the minute service notices for your daily transit routes
 #
 ## Project Description
-
 Get a no-nonsense list of the latest delays, cancellations, or advisories on your public transit systems.
 Customize your app to see only notices from your selected routes.
 
 Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 
-### Screenshots
-
+## Screenshots
  <p align="center" width="100%">
-    <img width="33%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.25.20.png">
+    <img width="25%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.25.20.png" alt="Welcome Screen">
 </p>
-    
-![Welcome](https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.25.20.png)
+
 #### Dashboard
-![Dashboard](https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.26.43.png)
+<p align="center" width="100%">
+    <img width="25%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.26.43.png" alt="Dashboard">
+</p>
+
 #### Set your usual transit routes
-![Customize the transit routes on the dashboard](https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.27.14.png)
+<p align="center" width="100%">
+    <img width="25%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.27.14.png" alt="Customize the transit routes on the dashboard">
+</p>
+
 #### Tablet Dashboard with TTC and GO feeds
-![Dashboard on Ipad](https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.46.59%20-%20main%20screen%20(tablet%20-%20landscape).png)
-</div>
+<p align="center" width="100%">
+    <img width="25%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.46.59%20-%20main%20screen%20(tablet%20-%20landscape).png" alt="Dashboard on Ipad">
+</p>
 
 ## Project Stack
 
