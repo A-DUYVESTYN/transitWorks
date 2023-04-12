@@ -7,11 +7,11 @@ const bcrypt = require("bcryptjs");
 const saltRounds = 10
 
 // get all users
-router.get('/', (req, res) => {
-  User.find()
-    .then(allUsers => res.json(allUsers))
-    .catch(err => res.status(400).json('get Error: ' + err))
-})
+// router.get('/', (req, res) => {
+//   User.find()
+//     .then(allUsers => res.json(allUsers))
+//     .catch(err => res.status(400).json('get Error: ' + err))
+// })
 // get specific user
 router.get('/data/:id', (req, res) => {
   // console.log("Request for user data for user ID:", req.params.id)
