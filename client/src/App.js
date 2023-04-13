@@ -101,7 +101,7 @@ function App() {
   }, [])
   
   useEffect(() => {
-    console.log("inside Appjs useEffect, userID=", userID)
+    // console.log("inside Appjs useEffect, userID=", userID)
     if (userID && userID !== "LOADING") {
       axios.get(`${process.env.REACT_APP_SERVER_URL}/users/data/${userID}`)
         .then((res) => {

@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {ENVIROMENT, PORT, FRONTEND_URL} = process.env;
+const {ENVIROMENT, PORT, FRONTEND_URL, SESSION_SECRET,SESSION_SAMESITE,SESSION_SECURE} = process.env;
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors')
@@ -25,16 +25,21 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
+// app.set("trust proxy", 1);
 app.use(expressSession({
-  secret: "potato unicorn steak",
+  secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+  name: 'sessionCookie', // This needs to be unique per-host.
   cookie: {
     expires: 365 * 24 * 60 * 60 * 1000, // 1 year
-    sameSite: "None",  // use "lax" for localhost development to use cookies use "none" for production
-    secure: true // remove secure for localhost development, use secure: true for production
+    sameSite: SESSION_SAMESITE,  // use "lax" for localhost development to use cookies. use "none" for production
+    secure: SESSION_SECURE === 'false' ? false : true // remove secure for localhost development. use secure: true for production
   }
 }))
+
+console.log("details",SESSION_SECRET,SESSION_SAMESITE,SESSION_SECURE)
 
 // app.use(cookieSession({
 //   name: 'session',
