@@ -25,6 +25,7 @@ export default function Settings(props) {
           <div className="">
             <select 
               value={selected} 
+              onBlur={event => event.preventDefault()}
               onChange={() => setSelected("defaultAddRoute")} 
               className="select text-gray-700 w-full my-1">
               <option value="defaultAddRoute"> Add a TTC Route</option>
