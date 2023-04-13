@@ -26,9 +26,8 @@ const Login = (props) => {
       .then((res) => {
         console.log(`login server response: ${res.data.message}`)
         if (res.data.id) {
-          console.log(res.data.id)
+          // console.log(res.data.id)
           props.handleLogin(res.data.id);
-          // localStorage.setItem("user_id", res.data.id);
         }
       })
       .catch((err) => {
