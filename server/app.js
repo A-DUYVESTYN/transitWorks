@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {ENVIROMENT, PORT} = process.env;
+const {ENVIROMENT, PORT, FRONTEND_URL} = process.env;
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors')
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(bodyParser.json()); // depricated as of 2021
 app.use(cors({
-  origin: ["http://localhost:3000"],
+  origin: [FRONTEND_URL],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
