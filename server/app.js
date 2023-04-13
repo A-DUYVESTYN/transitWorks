@@ -31,7 +31,8 @@ app.use(expressSession({
   saveUninitialized: false,
   cookie: {
     expires: 365 * 24 * 60 * 60 * 1000, // 1 year
-    sameSite: "lax",
+    sameSite: "None",  // use "lax" for localhost development to use cookies use "none" for production
+    secure: true // remove secure for localhost development, use secure: true for production
   }
 }))
 
