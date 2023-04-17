@@ -4,7 +4,7 @@ import React from "react";
 import TTCItem from "./TTCItem";
 
 function TTC(props) {
-  const { devView, userPref } = props;
+  const { devView, userPref, getRouteColor } = props;
   const [loading, setLoading] = useState(true)
   const [tweets, setTweets] = useState({
     twitterUser: "@ttcnotices",
@@ -21,20 +21,6 @@ function TTC(props) {
       const match = input.match(/\b([0-9]|[1-9][0-9]|[1-9][0-9][0-9])(?=[A-Z]|\b)/);  
       if (match) { return Number(match[0]) }
       return "-";
-    }
-    const getRouteColor = function (num) {
-      //NOTE: the className must appear entirety (e.g. 'bg-[#f8c300]') for tailwind to extract & compile it
-      //TTC red colour info and tones: https://www.color-hex.com/color/da251d
-      if (num === 1) return ['bg-[#f8c300]', "subway"]
-      if (num === 2) return ['bg-[#00923f]', "subway"]
-      if (num === 3) return ['bg-[#0082c9]', "subway"]
-      if (num === 4) return ['bg-[#a21a68]', "subway"]
-      if (num < 300) return ['bg-[#e56660]', "bus"]
-      if (num < 400) return ['bg-[#024182]', "blue-night"]
-      if (num < 500) return ['bg-[#808080]', "community-bus"]
-      if (num < 900) return ['bg-[#da251d]', "streetcar"]
-      if (num > 900) return ['bg-[#00923f]', "express"]
-      return ['bg-[#d7dbd3]', 'non-route']
     }
     const formattedArr = [];
     tweetArr.forEach((tweet) => {
@@ -69,6 +55,7 @@ function TTC(props) {
         console.log("twitter GET error:", err);
       })
       .finally(() => setLoading(false))
+      // eslint-disable-next-line 
   }, []);
 
   return (
