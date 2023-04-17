@@ -35,6 +35,7 @@ function App() {
 
   // user data setup
   const [userID, setUserID] = useState("LOADING"); // for development, defualt to user 63eeba3b390423a6f5c7e96f, userName "Pat"
+  const [updating, setUpdating] = useState(false)
 
   const [userPref, setUserPref] = useState({
     _id: null,
@@ -60,11 +61,13 @@ function App() {
   };
 
   const addTtcRoute = function (route) { 
+    setUpdating(true)
     const newRouteArr = [...userPref.ttcRoutes, route]
     axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/${userID}`, {...userPref,  ttcRoutes: newRouteArr})
     .then(() => {
       setUserPref(prev => {
-        console.log("Added TTC route. Updated array:", newRouteArr)
+        console.log("Added TTC route:", route,". Updated array:", newRouteArr)
+        setUpdating(false)
         return {...prev, ttcRoutes: newRouteArr}
       })
     })
@@ -74,11 +77,13 @@ function App() {
   }
 
   const removeTtcRoute = function (route) {
+    setUpdating(true)
     const newRouteArr = [...userPref.ttcRoutes.filter(e => e !== route)]
     axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/${userID}`, {...userPref,  ttcRoutes: newRouteArr})
     .then(() => {
       setUserPref(prev => {
         console.log("Removed TTC route. Updated array:", newRouteArr)
+        setUpdating(false)
         return {...prev, ttcRoutes: newRouteArr}
       })
     })
@@ -86,6 +91,22 @@ function App() {
       console.log("Error message on PUT:", err)
     })
   }
+
+  const getRouteColor = function (num) {
+    //NOTE: the className must appear entirety (e.g. 'bg-[#f8c300]') for tailwind to extract & compile it
+    //TTC red colour info and tones: https://www.color-hex.com/color/da251d
+    if (num === 1) return ['bg-[#f8c300]', "Subway"]
+    if (num === 2) return ['bg-[#00923f]', "Subway"]
+    if (num === 3) return ['bg-[#0082c9]', "Subway"]
+    if (num === 4) return ['bg-[#a21a68]', "Subway"]
+    if (num < 300) return ['bg-[#e56660]', "Bus"]
+    if (num < 400) return ['bg-[#024182]', "Blue-night"]
+    if (num < 500) return ['bg-[#808080]', "Community-bus"]
+    if (num < 900) return ['bg-[#da251d]', "Streetcar"]
+    if (num > 900) return ['bg-[#00923f]', "Express"]
+    return ['bg-[#d7dbd3]', 'non-route']
+  }
+
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/users/login`)
       .then((res) => {
@@ -126,25 +147,34 @@ function App() {
     <>
     {userID && (
       <div className="flex flex-col mb-10 bg-slate-300 dark:bg-slate-800">
-        <div className="grow">
+        <div className="">
           <div className='flex flex-row justify-between'>
-          <Header/>
-          <Settings
-            userName={userPref.userName}
-            ttcRoutes={userPref.ttcRoutes}
-            addTtcRoute={addTtcRoute}
-            removeTtcRoute={removeTtcRoute}
-            routeList={routeList}
-            logout={clearUserSession}></Settings>
+            <Header/>
+            <Settings
+              userName={userPref.userName}
+              ttcRoutes={userPref.ttcRoutes}
+              addTtcRoute={addTtcRoute}
+              removeTtcRoute={removeTtcRoute}
+              routeList={routeList}
+              logout={clearUserSession}
+              getRouteColor={getRouteColor}
+              updating={updating}
+              setUpdating={setUpdating}
+              >
+            </Settings>
           </div>
           <div className="flex flex-col md:flex-row justify-evenly">
-          <TTC devView={devView} userPref={userPref} className="w-60" />
-          <GoTransit devView={devView} userPref={userPref} className="w-60" />
+            <TTC 
+              devView={devView} 
+              userPref={userPref} 
+              getRouteColor={getRouteColor} 
+              className="w-60"
+            />
+            <GoTransit devView={devView} userPref={userPref} className="w-60" />
           </div>
         </div>
         <Footer handleThemeSwitch={handleThemeSwitch} toggleDevView={toggleDevView} />
 
-        
       </div>
     )}
     </>
