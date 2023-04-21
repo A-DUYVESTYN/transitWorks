@@ -7,6 +7,8 @@ Customize your app to see only notices from your selected routes.
 
 Currently Supports Toronto Transit Comission (TTC) and GO Transit (Metrolinx).
 
+*NOTE: Please allow a few seconds for the server to spin up on first use*
+
 ## Screenshots
  <p align="center" width="100%">
     <img width="30%" src="https://github.com/A-DUYVESTYN/transitWorks/blob/main/client/public/Screen%20Shot%202023-04-07%20at%2019.25.20.png" alt="Welcome Screen">
